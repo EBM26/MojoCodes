@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AQT FAQs</title>
+	<style>
+		    
+		#search{margin-left: 15px; margin-bottom: 30px; width: 80%; padding: 10px; font-size: 18px; color: #2C3D55;
+			    border: 1px solid #415066; border-radius: 3px; font-family: 'Montserrat', sans-serif;}
+		.generalWrapper{padding: 0 15px; margin-bottom: 40px;}
+		.faq-wrapper{border: 1px solid #415066; border-bottom: 0;}
+		.question-div{padding: 15px; border-bottom: 1px solid #415066; cursor: pointer;}
+		.answer-div{padding: 20px; border-bottom: 1px solid #415066; display: none;}
+		.plus{color: #2A4494; font-size: 40px; font-weight: bold; font-family: 'Montserrat', sans-serif; display: block; float: left; transition: .3s}
+		.question-p{font-family: 'Montserrat', sans-serif; font-size: 20px; float: right; color: #2C3D55; width: 95%; display: inline-block; line-height: 1.3; margin: 0;}
+		.answer-p{font-family: 'Montserrat', sans-serif; font-size: 18px; color: #2C3D55; line-height: 1.3; margin: 0;}
+		.clear{clear: both;}
+		.transition{transform: rotate(45deg);}
+		.showNOw{display: block !important;}
+		.FaqTitle{color: rgb(65, 80, 102); font-weight: bold; font-family: 'Montserrat', sans-serif; font-size: 20px;}
+		#result-box{padding: 20px 15px; border: 1px solid #415066; margin: 10px 15px 45px; min-height: 200px;}
+		.marleft15{margin-left: 15px;}
+		.result-Q{font-family: 'Montserrat', sans-serif; font-size: 20px; color: #2C3D55; text-decoration: underline;}
+		.result-A{font-family: 'Montserrat', sans-serif; font-size: 18px; color: #2C3D55;}
+		.resultDiv{border:  1px solid #415066; padding: 10px;}
+		@media only screen and (max-width: 736px) {
+			.question-p{width: 90%}	
+	 	}
+
+	</style>
+</head>
+<body>
+	<div style="max-width: 800px; margin: auto; padding: 5% 0;">
+		
+		<input id="search" value="" placeholder="Search FAQs"/>
+		<p class="FaqTitle marleft15">Your Search Results</p>
+		<div id="result-box">
+			
+		</div>
+		<div id="featuresWrapper" class="generalWrapper">
+			<p class="FaqTitle">Features FAQs</p>
+			<div class="faq-wrapper">
+				<div class="question-div">
+					<span class="plus">+</span> <p class="question-p" id="featuresQ1" style="margin-top: 10px"></p>
+					<div class="clear"></div>
+				</div>
+				<div class="answer-div">
+					<p class="answer-p" id="featuresA1"></p>
+				</div>
+				<div class="question-div">
+					<span class="plus">+</span> <p class="question-p" id="featuresQ2" style="margin-top: 10px"></p>
+					<div class="clear"></div>
+				</div>
+				<div class="answer-div">
+					<p class="answer-p" id="featuresA2"></p>
+				</div>
+				<div class="question-div">
+					<span class="plus">+</span> <p class="question-p" id="featuresQ3" style="margin-top: 10px"></p>
+					<div class="clear"></div>
+				</div>
+				<div class="answer-div">
+					<p class="answer-p" id="featuresA3"></p>
+				</div>
+				<div class="question-div">
+					<span class="plus">+</span> <p class="question-p" id="featuresQ4" style="margin-top: 10px"></p>
+					<div class="clear"></div>
+				</div>
+				<div class="answer-div">
+					<p class="answer-p" id="featuresA4"></p>
+				</div>
+				<div class="question-div">
+					<span class="plus">+</span> <p class="question-p" id="featuresQ5" style="margin-top: 10px"></p>
+					<div class="clear"></div>
+				</div>
+				<div class="answer-div">
+					<p class="answer-p" id="featuresA5"></p>
+				</div>
+				<div class="question-div">
+					<span class="plus">+</span> <p class="question-p" id="featuresQ6" style="margin-top: 10px"></p>
+					<div class="clear"></div>
+				</div>
+				<div class="answer-div">
+					<p class="answer-p" id="featuresA6"></p>
+				</div>
+				<div class="question-div">
+					<span class="plus">+</span> <p class="question-p" id="featuresQ7" style="margin-top: 10px"></p>
+					<div class="clear"></div>
+				</div>
+				<div class="answer-div">
+					<p class="answer-p" id="featuresA7"></p>
+				</div>
+			</div>
+</div>
+
+<div id="safetyWrapper" class="generalWrapper">
+	<p class="FaqTitle">Safety FAQs</p>
+	<div class="faq-wrapper">
+		<div class="question-div">
+			<span class="plus">+</span> <p class="question-p" id="safetyQ1"></p>
+			<div class="clear"></div>
+		</div>
+		<div class="answer-div">
+			<p class="answer-p" id="safetyA1"></p>
+		</div>
+		<div class="question-div">
+			<span class="plus">+</span> <p class="question-p" id="safetyQ2" style="margin-top: 10px"></p>
+			<div class="clear"></div>
+		</div>
+		<div class="answer-div">
+			<p class="answer-p" id="safetyQ2"></p>
+		</div>
+	</div>
+</div>
+
+
+<div id="contaminantsWrapper" class="generalWrapper">
+<p class="FaqTitle">Contaminants & Toxins FAQs</p>
+<div class="faq-wrapper">
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="contamQ1" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="contamA1"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="contamQ2" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="contamA2"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p"  id="contamQ3" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="contamA3"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="contamQ4" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="contamA4"></p>
+	</div>
+</div>
+</div>
+
+<div id="mineralsWrapper" class="generalWrapper">
+<p class="FaqTitle">Minerals FAQs</p>
+<div class="faq-wrapper">
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="mineralQ1" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="mineralA1" ></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p"  id="mineralQ2" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="mineralA2"></p>
+	</div>
+</div>
+</div>
+
+<div id="storeWrapper" class="generalWrapper">
+<p class="FaqTitle">Store FAQs</p>
+<p style="font-size: 14px; color: color: rgb(65, 80, 102); font-family: 'Montserrat', sans-serif;">The AquaTru store is located at <a href="www.aquatruwater.com/store/" style="text-decoration: none; color: inherit;">www.aquatruwater.com/store/</a>.<br><br>
+This is where you can purchase replacement filters, additional clean water pitchers and our Perfect Minerals.</p>
+<div class="faq-wrapper">
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="storeQ1" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="storeA1"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="storeQ2" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p"  id="storeA2"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="storeQ3" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="storeA3"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="storeQ4" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="storeA4"></p>
+	</div>
+</div>
+</div>
+
+<div id="filtersWrapper" class="generalWrapper">
+	<p class="FaqTitle">Filters FAQs</p>
+<div class="faq-wrapper">
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="filterQ1" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="filterA1"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="filterQ2" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="filterA2"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="filterQ3" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="filterA3"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="filterQ4" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="filterA4"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="filterQ5" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="filterA5"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="filterQ6" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="filterA6"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="filterQ7" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="filterA7"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="filterQ8" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="filterA8"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="filterQ9" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="filterA9"></p>
+	</div>
+</div>
+</div>
+
+<div id="comparisonsWrapper" class="generalWrapper">
+<p class="FaqTitle">Comparisons FAQs</p>
+<div class="faq-wrapper">
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="compareQ1" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="compareA1"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="compareQ2" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="compareA2"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="compareQ3" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="compareA3"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="compareQ4" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="compareA4"></p>
+	</div>
+</div>
+</div>
+
+<div id="distributionWrapper" class="generalWrapper">
+<p class="FaqTitle">Distribution FAQs</p>
+<div class="faq-wrapper">
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" style="margin-top: 10px" id="distribQ1"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="distribA1"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="distribQ2" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="distribA2"></p>
+	</div>
+	<div class="question-div">
+		<span class="plus">+</span> <p class="question-p" id="distribQ3" style="margin-top: 10px"></p>
+		<div class="clear"></div>
+	</div>
+	<div class="answer-div">
+		<p class="answer-p" id="distribA3"></p>
+	</div>
+</div>
+</div>
+
+
+	</div> <!-- end of container div --> 
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		
+		$(document).ready(function() {
+
+		// open and close FAQs questions
+		$(".question-div").click(function(){
+
+		if(!$(this).hasClass("active")) {
+			$(".question-div").removeClass("active");
+			$(".answer-div").slideUp("slow");
+			$(".plus").removeClass("transition");
+			$(this).addClass("active");
+			$(this).next(".answer-div").slideDown("slow");
+			$(this).find(".plus").addClass("transition");
+			}
+
+		    else if($(this).hasClass("active")) {
+				$(this).removeClass("active");
+				$(".answer-div").slideUp("slow");
+				$(".plus").removeClass("transition");
+			  }
+
+		});
+
+		// storing questions and answers in json
+		var data = [  
+
+			{  
+				"question" : "What are the dimensions of the AquaTru?",
+				"answer" : '14" Tall x 14" Deep x 12" Wide 35.56 cm Tall x 35.56 cm Deep x 30.48 cm Wide.'
+			},
+
+			{  
+				"question" : "What are the dimensions of the clean water tank?",
+				"answer" : '7.75″ Tall x 5.75″ Wide x 9.625″ Deep. 19.69 cm Tall x 14.61 cm Wide x 24.45 cm Deep.'
+			},
+
+			{  
+				"question" : "How much does AquaTru weigh?",
+				"answer" : '16 pounds.'
+			},
+
+			{  
+				"question" : "How much water does AquaTru hold?",
+				"answer" : 'The tap water tank holds about a gallon of water. The clean water tank holds about 3 quarts of purified water.'
+			},
+
+			{  
+				"question" : "How quickly does AquaTru work?",
+				"answer" : 'AquaTru purifies a gallon of water in 12 to 15 minutes.'
+			},
+
+			{  
+				"question" : "Does AquaTru require electricity?",
+				"answer" : 'AquaTru operates off a 120-volt AC wall plug.'
+			},
+
+			{  
+				"question" : "What does it cost in electricity to run AquaTru?",
+				"answer" : 'For an average household that will consume 2 full tanks each day, the cost is about $1 a year. Each gallon will cost about $0.0013.'
+			},
+
+			{  
+				"question" : "Does AquaTru water need to be refrigerated to prevent filtered water from collecting mold and bacteria?",
+				"answer" : 'It is not necessary to keep filtered AquaTru water refrigerated because AquaTru removes biological contaminants from water. AquaTru has lids that will prevent airborne germs from contaminating the water. We recommend you clean the water tanks once a week with soap and water and that you wash your hands before touching the inside of the water tanks to avoid contamination.'
+			},
+
+			{  
+				"question" : "Is the plastic in AquaTru safe?",
+				"answer" : 'AquaTru uses Tritan plastic, the same BPA & BPS free plastic used in best-selling food blenders like Nutri Bullet and Vitamix. Tritan has been tested at universities and independent third-party labs and the results have overwhelmingly demonstrated that it is safe and free of estrogenic and androgenic activity. If you prefer to avoid all plastics, you can simply transfer the purified water into a glass pitcher after the filtering process.'
+			},
+
+			{  
+				"question" : "What contaminants does AquaTru remove?",
+				"answer" : 'According to the EPA there are up to 7500 contaminants found in tap water. Out of these 7500, the EPA has identified 600 that they believe may represent a public health concern. Despite this, the EPA currently regulates less than 100 contaminants and has not updated the water safety rules for over thirty years. There are three types of contaminants in water: organic and inorganic chemicals and biological contaminants. AquaTru is designed to remove all three type of water contaminants.'
+			},
+
+			{  
+				"question" : "Has the filtered water been tested by an independent lab? Were both the beginning of the filter life and the end of the filter life tested? If so, what were the results?",
+				"answer" : 'AquaTru purifies the water using 4-stage reverse osmosis, the same type of purification used by all the major bottle water brands to create pure great tasting water. Yes, AquaTru has been tested and certified to remove over 78 contaminants by IAPMO (International Association of Plumbing and Mechanical Officials www.iapmo.org) throughout the recommended filter life.<br>IAPMO is an independent testing laboratory whose mission is to protect the public and continually improve the safety, performance and reliability of plumbing and mechanical systems. AquaTru has been tested and certified to the NSF Standard 42,53,58, and 401 by IAPMO for the reduction of the substances listed in the performance data sheet. (<a href="conjure_resource(5170cc4e99314dd287fde65cfeafbf92)" style="text-decoration: none;" target="_blank">Performance Report</a>)'
+			},
+
+			{  
+				"question" : "Does AquaTru remove Fluoride?",
+				"answer" : 'AquaTru removes more than 90% of fluoride.'
+			},
+
+			{  
+				"question" : "Does AquaTru produce alkaline water?",
+				"answer" : 'AquaTru is designed to turn tap water into pure bottled-water quality water. It is not designed to impact the PH of water. Rain water, which is nature’s original water, is slightly acidic with a PH below 7. Depending on the unique properties of your tap water, the purified AquaTru water may have a neutral PH or fall in a PH range above or below that (normally from 5 – 8). Some people have a preference for Alkaline water and use a device to boost the PH above 7. Some people prefer their water slightly acidic (like rainwater) and add lemon or lime to their water which will reduce the PH of water below 7. There is no scientific evidence favoring any particular PH of water. The important thing is that the water should be pure and free of harmful contaminants.'
+			},
+
+			{  
+				"question" : "What is the mineral content in AquaTru water?",
+				"answer" : 'AquaTru is designed to turn tap water into pure bottled-water quality water. It is not designed to impact the PH of water. Rain water, which is nature’s original water, is slightly acidic with a PH below 7. Depending on the unique properties of your tap water, the purified AquaTru water may have a neutral PH or fall in a PH range above or below that (normally from 5 – 8). Some people have a preference for Alkaline water and use a device to boost the PH above 7. Some people prefer their water slightly acidic (like rainwater) and add lemon or lime to their water which will reduce the PH of water below 7. There is no scientific evidence favoring any particular PH of water. The important thing is that the water should be pure and free of harmful contaminants.'
+			},
+
+			{  
+				"question" : "I read that the Reverse Osmosis process removes essential minerals that are good for the body. Can removing these minerals be harmful to your health?",
+				"answer" : "Humans get the minerals they need from the food they eat. Rain water, which is nature's original water, has almost no minerals. There is no evidence that RO water or other low TDS water is harmful to human health."
+			},
+
+			{  
+				"question" : "Can I purchase extra clean water pitchers?",
+				"answer" : 'Yes, additional containers are available for sale at our online store.'
+			},
+
+			{  
+				"question" : "What minerals are in the AquaTru Perfect Minerals?",
+				"answer" : 'You can see a list of the minerals at this link <a href="www.aquatruwater.com/store/" style="text-decoration: none;">www.aquatruwater.com/statement-of-elements/</a>'
+			},
+
+			{  
+				"question" : "How much do the filters cost?",
+				"answer" : 'The Dual Function Pre-filter is $19.95; the Reverse Osmosis filter is $49.95; and the final carbon VOC filter is $29.95.'
+			},
+
+			{  
+				"question" : "Can I get a bigger water tank?",
+				"answer" : 'Not at this time. AquaTru was designed to be easy to use so we chose 1 gallon of water to make it easy to lift and move, say to the refrigerator, or wherever you decide to dispense your water from. The good news is that since AquaTru purifies so quickly, you can easily make multiple gallons per day. Additionally, you can also purchase a second clean water container so that water is always being filtered on the unit while the other container is being used for pouring or dispensing.'
+			},
+
+			{  
+				"question" : "Does AquaTru come with filters or do we have to purchase them separately?",
+				"answer" : 'The first set of filters comes with your purchase of the AquaTru water purification system.'
+			},
+
+			{  
+				"question" : "Do any of your filters use any materials derived from corn, gluten, or soy? I have a history of reacting to water filtered by carbon filters that have materials derived from corn.",
+				"answer" : 'None of the AquaTru filters are made of material that contain corn, gluten or soy.'
+			},
+
+			{  
+				"question" : "Is the carbon filter made from coconuts shells? I am allergic to coconuts.",
+				"answer" : 'The pre-filter and the VOC filter both contain activated charcoal derived from coconut shell. The activated carbon is hypoallergenic and will not trigger an allergic reaction to coconut. If you have specific concerns, please consult with your physician.'
+			},
+
+			{  
+				"question" : "How long will the filters last?",
+				"answer" : 'If you purchased your unit after April 6, 2018, AquaTru is programmed to alert you to change your filter 1/2- Prefilter, the earlier of 600 gallons or 6 months; filter 4-VOC filter, the earlier of 600 gallons or 12 months; and your filter 3 -Reverse Osmosis filter, the earlier of 1200 gallons or 24 months (2 years).<br>If you purchased your units before April 6, 2018, AquaTru is programmed to alert you to change your VOC filter after approximate 600 gallons; filter (1-2), Prefilter after approximately 1200 gallons; and your filter 3, Reverse Osmosis filter, after approximately 1200 gallons. Note for optimal performance the (1-2) prefilter should be changed whenever the (4) Reverse osmosis filter is changed.'
+			},
+
+			{  
+				"question" : "Can AquaTru filters filter lake water?",
+				"answer" : 'AquaTru is not intended for use with any water that is microbiologically unsafe, so it is not recommended for lake, stream or river water.'
+			},
+
+			{  
+				"question" : "Can AquaTru filter saltwater?",
+				"answer" : 'AquaTru is designed to purify municipal tap water. Seawater will quickly overwhelm the RO filter and void the warranty. In an emergency, AquaTru can purify sea water, but it will dramatically shorten the product life and we have done no testing to determine how long it will last.'
+			},
+
+			{  
+				"question" : "Can AquaTru filter well water?",
+				"answer" : 'AquaTru is not intended for use with any water that is microbiologically unsafe. If you are 100% confident that your well water is free from biological contaminants, you can use AquaTru to purify your water.'
+			},
+
+			{  
+				"question" : "Can AquaTru filter water that has been treated in a water softener?",
+				"answer" : 'Yes, AquaTru can filter water that has gone through a water softener.'
+			},
+
+			{  
+				"question" : "Can AquaTru filter hard water?",
+				"answer" : 'AquaTru is intended for water with hardness below 10 gpg (grain per gallon). If the hardness is higher, lime scale will build up on the membrane inside the RO filter. Scale build up will plug the RO filter and increase filtering time requiring RO filter replacement more often. We do not recommend that AquaTru is used with water in excess of 10 gpg hardness, unless the water is softened prior to filtering in AquaTru.'
+			},
+
+			{  
+				"question" : "What is the difference between having an Alkaline Ionizer to purify water as compared to a Reverse Osmosis (RO) Water Purifier?",
+				"answer" : 'AquaTru (an RO Countertop Water Purifier) is certified to remove contaminants like chlorine, herbicides, industrial solvent, lead, copper, chromium 6, fluoride, VOC, and many more. Most Alkaline Ionizers are not certified to remove any contaminants, but simply changes the PH balance in the water.'
+			},
+
+			{  
+				"question" : "How does this filter compare to Kangen water?",
+				"answer" : 'Kangen is an Alkaline Ionizer. Please see the FAQ above on the difference between Alkaline Ionizer and Reverse Osmosis.'
+			},
+
+			{  
+				"question" : "How does AquaTru compare to a water distiller?",
+				"answer" : 'Water distillers take a long time to make a 1 gallon of water typically 4 to 5 hours. AquaTru makes 1 gallon in 15 minutes. Distillers also use a lot of electricity typically, 3.2 Kilowatt per gallon which equates to $0.38 in electricity per gallon. AquaTru uses only 0.01 kilowatt per gallon or $0.001 cost per gallon. Finally and most importantly, distillers do not remove volatile organic chemicals like benzene and disinfection by products commonly found in tap water.'
+			},
+
+			{  
+				"question" : "How does AquaTru compare to other water purifiers?",
+				"answer" : 'You will need to compare each manufacturer’s Performance Data Sheet which summarizes the results of an independent laboratory to NSF standards. The laboratory should be either NSF, WQA, IAPMO or UL since states that regulate water purifiers accept testing reports from these four laboratories in accordance with NSF testing standards. The laboratory name should be on the Performance Data Sheet.'
+			},
+
+			{  
+				"question" : "Can I become a distributor?",
+				"answer" : 'If you would like to distribute AquaTru, please send along any information about your company including your company name, other products you distribute, some references and preferred contact information and our VP of International Sales will contact you. Use the form below to answer the aforementioned questions.'
+			},
+
+			{  
+				"question" : "What countries is AquaTru available?",
+				"answer" : 'Although AquaTru’s universal 24-volt adaptor will work anywhere in the world, at this time AquaTru is only available for sale in the United States and Canada and through our designated distributors in Germany, France, Netherlands, Belgium, Hong Kong and Turkey.'
+			},
+
+			{  
+				"question" : "Do you ship to Canada?",
+				"answer" : 'Yes. When filling out the order form, please make sure you choose Canada and put the space between the 6 digits, otherwise it will not accept your Canadian Zip Code.'
+			}
+
+		];
+
+
+	// search function
+	$('#search').keyup(function(){
+		var searchField = $(this).val();
+		if(searchField === '')  {
+			$('#result-box').html('');
+			return;
+		};
+
+		var regex = new RegExp(searchField, "i");
+		var output = '<div>';
+		var count = 1;
+		$.each(data, function(key, val){
+			if ((val.question.search(regex) != -1)) {
+				output += '<div class="resultDiv">';
+				output += '<div class="result-Q">';
+				output +=  '<p>' + val.question + '<p>';
+				output += '</div>';
+				output += '<div class="result-A">';
+				output += '<p>' + val.answer + '<p>';
+				output += '</div>';
+				output += '</div>';
+				count++;
+				(val.question.search(regex));
+			}
+
+			else if ((val.answer.search(regex) != -1)) {
+				output += '<div class="resultDiv">';
+				output += '<div class="result-Q">';
+				output +=  '<p>' + val.question + '<p>';
+				output += '</div>';
+				output += '<div class="result-A">';
+				output += '<p>' + val.answer + '<p>';
+				output += '</div>';
+				output += '</div>';
+				count++;
+				(val.answer.search(regex));
+			}
+
+		});
+		output += '</div>';
+		$('#result-box').html(output);
+	});
+
+
+	$("#featuresQ1").html(data[0].question);
+	$("#featuresA1").html(data[0].answer);
+	$("#featuresQ2").html(data[1].question);
+	$("#featuresA2").html(data[1].answer);
+	$("#featuresQ3").html(data[2].question);
+	$("#featuresA3").html(data[2].answer);
+	$("#featuresQ4").html(data[3].question);
+	$("#featuresA4").html(data[3].answer);
+	$("#featuresQ5").html(data[4].question);
+	$("#featuresA5").html(data[4].answer);
+	$("#featuresQ6").html(data[5].question);
+	$("#featuresA6").html(data[5].answer);
+	$("#featuresQ7").html(data[6].question);
+	$("#featuresA7").html(data[6].answer);
+	$("#safetyQ1").html(data[7].question);
+	$("#safetyA1").html(data[7].answer);
+	$("#safetyQ2").html(data[8].question);
+	$("#safetyA2").html(data[8].answer);
+	$("#contamQ1").html(data[9].question);
+	$("#contamA1").html(data[9].answer);
+	$("#contamQ2").html(data[10].question);
+	$("#contamA2").html(data[10].answer);
+	$("#contamQ3").html(data[11].question);
+	$("#contamA3").html(data[11].answer);
+	$("#contamQ4").html(data[12].question);
+	$("#contamA4").html(data[12].answer);
+	$("#mineralQ1").html(data[13].question);
+	$("#mineralA1").html(data[13].answer);
+	$("#mineralQ2").html(data[14].question);
+	$("#mineralA2").html(data[14].answer);
+	$("#storeQ1").html(data[15].question);
+	$("#storeA1").html(data[15].answer);
+	$("#storeQ2").html(data[16].question);
+	$("#storeA2").html(data[16].answer);
+	$("#storeQ3").html(data[17].question);
+	$("#storeA3").html(data[17].answer);
+	$("#storeQ4").html(data[18].question);
+	$("#storeA4").html(data[18].answer);
+	$("#filterQ1").html(data[19].question);
+	$("#filterA1").html(data[19].answer);
+	$("#filterQ2").html(data[20].question);
+	$("#filterA2").html(data[20].answer);
+	$("#filterQ3").html(data[21].question);
+	$("#filterA3").html(data[21].answer);
+	$("#filterQ4").html(data[22].question);
+	$("#filterA4").html(data[22].answer);
+	$("#filterQ5").html(data[23].question);
+	$("#filterA5").html(data[23].answer);
+	$("#filterQ6").html(data[24].question);
+	$("#filterA6").html(data[24].answer);
+	$("#filterQ7").html(data[25].question);
+	$("#filterA7").html(data[25].answer);
+	$("#filterQ8").html(data[26].question);
+	$("#filterA8").html(data[26].answer);
+	$("#filterQ9").html(data[27].question);
+	$("#filterA9").html(data[27].answer);
+	$("#compareQ1").html(data[28].question);
+	$("#compareA1").html(data[28].answer);
+	$("#compareQ2").html(data[29].question);
+	$("#compareA2").html(data[29].answer);
+	$("#compareQ3").html(data[30].question);
+	$("#compareA3").html(data[30].answer);
+	$("#compareQ4").html(data[31].question);
+	$("#compareA4").html(data[31].answer);
+	$("#distribQ1").html(data[32].question);
+	$("#distribA1").html(data[32].answer);
+	$("#distribQ2").html(data[33].question);
+	$("#distribA2").html(data[33].answer);
+	$("#distribQ3").html(data[34].question);
+	$("#distribA3").html(data[34].answer);
+
+
+	}); // end of document ready function  
+
+
+
+	</script>
+</body>
+</html>
+
+
+
+

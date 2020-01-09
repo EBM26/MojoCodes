@@ -1,0 +1,213 @@
+<style>
+@media (min-width: 992px) { .block.block--fixed-steps {max-width: 1200px;} }
+#id21735-15 .align--right{text-align: center}
+
+.js-add-new-row{
+clear: both;
+}
+.js-add-new-row[disabled]{
+opacity: 0.5
+}
+.js-order-btn[disabled]{
+opacity: 0.5
+}
+</style>
+
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=M4qKgE"></script>
+
+<script>
+$(function () {
+    mojoApp.offerSelectionPage.onSectionOfferSelectClick = function(){
+	if ($('.js-add-new-row').attr('disabled') !== 'disabled') {
+		addNewRow(this);
+		if (getAvailableQty() <= 0) {
+			$('.js-add-new-row').attr('disabled', 'disabled');
+		}
+		reRenderOfferSelectors();
+		reRenderQtySelectors();
+		toggleOrderButton();
+	}
+};
+    $('.js-order-btn').off().on('click', function () {
+        if ($(this).attr('disabled') !== 'disabled') {
+            var allOffers = $('[data-offer-section-offer="true"] select');
+            var allQty = $('[data-offer-section-quantity="true"] select');
+            var result = {};
+            ___pageOffers.forEach(function (e) {
+                result[e.offerId] = 0;
+            });
+			var isMainAdded = 0;
+            for (var i = 0; i < allOffers.length; ++i) {
+                var offerId = parseInt($(allOffers[i]).val());
+                if (offerId != 0) {								
+                    var qty = parseInt($(allQty[i]).val());
+					if (!isMainAdded){
+						isMainAdded = true;
+						offerId = getMainId(offerId)
+						result[offerId] = 1;
+						qty--;
+					}
+					offerId = getDiscountedId(offerId)
+                    result[offerId] = qty;
+                }
+            }
+            window.offerSelectionPage.sendOffers(result);
+        }
+    });
+    $(document).on('change', '[data-offer-section-offer="true"] select', function () {
+        reRenderOfferSelectors();
+        toggleOrderButton();
+    });
+    $(document).on('change', '[data-offer-section-quantity="true"] select', function () {
+        if ($(this).val() == 0) {
+            var allRows = $('[data-offer-section-quantity="true"] select');
+            var currentRowNumber = allRows.index($(this));
+            $(this).parents('[data-offer-section-quantity="true"]').remove();
+            var allOffers = $('[data-offer-section-offer="true"]');
+            $(allOffers[currentRowNumber]).remove();
+        }
+        reRenderOfferSelectors();
+        reRenderQtySelectors();
+        if (getAvailableQty() > 0) {
+            $('.js-add-new-row').removeAttr('disabled');
+        }
+        else {
+            $('.js-add-new-row').attr('disabled', 'disabled');
+        }
+        toggleOrderButton();
+    });
+    $('[data-offer-section-offer="true"] select').val(0);
+    reRenderOfferSelectors();
+    toggleOrderButton();
+});
+
+function addNewRow(btn) {
+    var offerSelector = $('[data-offer-section-offer="true"]:first').clone();
+    offerSelector.find('option').remove();
+    reRenderOffers(offerSelector.find('select'));
+    var qtySelector = $('[data-offer-section-quantity="true"]:first').clone();
+    qtySelector.find('option').remove();
+    reRenderQuantity(qtySelector.find('select'));
+    $('[data-offer-section-quantity="true"]:last').after(offerSelector);
+    offerSelector.after(qtySelector);
+}
+
+function reRenderOfferSelectors() {
+    $('[data-offer-section-offer="true"] select').each(function () {
+        reRenderOffers($(this));
+    });
+}
+function reRenderQtySelectors() {
+    $('[data-offer-section-quantity="true"] select').each(function () {
+        reRenderQuantity($(this));
+    });
+}
+
+function reRenderOffers(offerSelector) {
+    var selectedOffer = offerSelector.val();
+    offerSelector.find('option').remove();
+    var addedOffersIds = [];
+    $('[data-offer-section-offer="true"] select').each(function () {
+        addedOffersIds.push(parseInt($(this).val()));
+    });
+	var allOffers = getAllOffersToRender();
+    var offersToRender = allOffers.filter(function (offer) { return addedOffersIds.indexOf(offer.offerId) == -1 });
+    offerSelector.append('<option value="0">Select Your Size</option>');
+    for (var i = 0; i < offersToRender.length; ++i) {
+        offerSelector.append('<option value="' + offersToRender[i].offerId + '">' + offersToRender[i].shortTitle + "</option>");
+    }
+    if (selectedOffer != null) {
+        offerSelector.val(selectedOffer);
+    }
+}
+
+function reRenderQuantity(qtySelector) {
+    var selectedQty = qtySelector.val();
+    qtySelector.find('option').remove();
+    var maxQty = getAvailableQty();
+    if ($('[data-offer-section-quantity="true"] select').length > 1) {
+        qtySelector.append('<option value="0">remove</option>');
+    }
+    for (var i = 1; i <= maxQty; ++i) {
+        qtySelector.append('<option value="' + i + '">' + i + "</option>");
+    }
+    selectedQty = selectedQty || 1;
+    if (qtySelector.find('option[value="' + selectedQty + '"]').length) {
+        qtySelector.val(selectedQty);
+    }
+    else {
+        qtySelector.val(1);
+    }
+}
+
+function getAvailableQty() {
+    var qtySum = 0;
+    $('[data-offer-section-quantity="true"] select').each(function () {
+        var value = $(this).val();
+        if (value != null) {
+            qtySum += parseInt(value);
+        }
+    });
+    return 3 - qtySum;
+}
+
+function toggleOrderButton() {
+    if ($('[data-offer-section-offer="true"] select option[value!=0]:selected').length) {
+        $('.js-order-btn').removeAttr('disabled');
+    }
+    else {
+        $('.js-order-btn').attr('disabled', 'disabled');
+    }
+}
+
+function getAllOffersToRender(){
+	var addedGroups = [];
+	var result = [];
+	var allOffers = ___pageOffers;
+	allOffers.sort(compareOffers);
+	allOffers.forEach(function (e) {
+		 if (addedGroups.indexOf(e.shortTitle) < 0){
+			 addedGroups.push(e.shortTitle);
+			 result.push(e);
+		 }
+	});
+	return result;
+}
+
+function getMainId(offerId){
+	var offer = getOfferById(offerId);
+	var allGroupOffers = getOfferByGroup(offer.shortTitle);
+	allGroupOffers.sort(compareOffers);
+	return allGroupOffers[0].offerId;
+}
+
+function getDiscountedId(offerId){
+	var offer = getOfferById(offerId);
+	var allGroupOffers = getOfferByGroup(offer.shortTitle);
+	allGroupOffers.sort(compareOffers);
+	return allGroupOffers[1].offerId;
+}
+
+function getOfferByGroup(shortTitle){
+	return ___pageOffers.filter(function (offer) { return shortTitle == offer.shortTitle });
+}
+
+function getOfferById(offerId){
+	for(var i = 0; i < ___pageOffers.length; ++i){
+		if(___pageOffers[i].offerId == offerId){
+			return ___pageOffers[i];
+		}
+	}
+	return null;
+}
+
+function compareOffers( a, b ) {
+  if ( a.price > b.price ){
+    return -1;
+  }
+  if ( a.price < b.price ){
+    return 1;
+  }
+  return 0;
+}
+</script>

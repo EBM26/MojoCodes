@@ -1,0 +1,179 @@
+		<style>
+		.container{width: 1100px; margin: auto; margin-top: 300px;}
+    *{text-decoration: none; margin: 0; padding: 0;}
+    html,body{margin: 0; padding: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;color: #000;}
+    img{border: none;}
+    li{list-style-type: none;}
+    div{display: block; margin: 0; padding: 0;}
+    u{text-decoration: underline;}
+    s{text-decoration: line-through;}
+    i{font-style: italic;}
+    b{font-weight: bold;}
+    a:link, a:visited, a:active{text-decoration: none; color: inherit;}
+    .Fright{float: right;}
+    .Fleft{float: left;}
+    .clear{clear: both;}
+    .container{width: 1200px; margin: auto; margin-top: 200px}
+
+    /* actual component code */
+	*{text-decoration: none; margin: 0; padding: 0; max-width: 100%;}
+    #slider{ position: relative; margin: auto; height: 500px; width: 700px; overflow: hidden;}
+    #slider .img{position: absolute; max-width: 350px; margin: auto;}
+    #slider .nav {position: absolute; width: 100px; height: 300px; background-repeat: no-repeat;
+                  background-position: center; cursor: pointer;}
+    #slider .nav.previous {left: 0; background-image: url(https://mojonow.blob.core.windows.net/cmr/t2337/src/0aaac6d5f57b44cba29eaddcca2a4624_1.png);}
+    #slider .nav.next {right: 0; background-image: url(https://mojonow.blob.core.windows.net/cmr/t2337/src/ff324290001142adb484e51b33131a92_1.png);}
+    #dots ul {text-align: center;}
+    #dots ul li {display: inline-block; margin: 0 5px; width: 20px; height: 20px; background-color: #e8ebd6; 
+                  border: 1px solid #adb870; border-radius: 50%; cursor: pointer;}
+    #dots ul li:hover {background-color: #d4dab4;}
+    #dots ul li.active {background-color: #c1c992;}
+
+    /*image preview css code */
+    .preview {position: absolute; width: 100px; height: 100px; top: 100px; overflow: hidden; border-radius: 50%;}
+    .preview img{width: 100px;}
+    .preview.previous-image {left: 100px;}
+    .preview.next-image{right: 100px;}
+    .img img{max-width: 350px; margin: auto;}
+    #specialBack{ background-size: cover;
+            background: url(https://mojonow.blob.core.windows.net/cmr/t2337/src/693689319fc54ac6b61054d85aa1e9a4_1.png) no-repeat center;}
+	</style>
+
+	<body style="background-color: blue;">
+		
+	
+
+	<div class="container">
+			<div id="specialBack">
+			<div id="slider" class="span">
+				<div class="img image-1">
+					<img src="https://mojonow.blob.core.windows.net/cmr/t2337/src/3639cc78bed04fcf95cd1bfded48ca7b_1.png" alt="">
+				</div>
+				<div class="img image-2">
+					<img src="https://mojonow.blob.core.windows.net/cmr/t2337/src/4610126c1a044730b9d7c92cf4b574d8_1.png" alt="">
+				</div>
+				<div class="img image-3">
+					<img src="https://mojonow.blob.core.windows.net/cmr/t2337/src/f0fa37d874344ddd8374b8b02ec2d937_1.png" alt="">
+				</div>
+				<div class="nav previous"></div>
+				<div class="nav next"></div>
+        <div class="previews">
+          <div class="preview previous-image"></div>
+          <div class="preview next-image"></div>
+        </div>
+			</div>
+		</div>
+		</div> <!-- container -->
+	
+	</body>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+		<script>
+// SLIDER
+var slider = function() {
+
+	// Set time delay of slider
+	var delay = 5000;
+
+	// Set variables
+	var numImages = $('.img').length;
+	var previousImage = numImages;
+	var currentImage = 1;
+	var nextImage = 2;
+	var previewHover = false;
+
+	// Find width of container div
+	var sliderWidth = $("#slider").width() + 2;
+
+	// Give images same width as slider
+	var sizeImages = function() {
+		$("img").width(sliderWidth);
+	};
+	sizeImages();
+
+	// Create as many navigation dots as there are pictures
+	for (var i = 1; i <= numImages; i++) {
+		$('#dots').find('ul').append($('<li class="dot ' + i + '""></li>'));
+	}
+
+	// Set initial position of images
+	var resetImages = function() {
+		$('.img').css({"left": sliderWidth+"px"});
+		$('.img').first().css({"left": "0px"});
+		$('.1').addClass("active");
+	};
+	resetImages();
+
+	// Slide to next image
+	var slideNextImageLeft = function() {
+		$('.image-' + nextImage).css({"left": sliderWidth+"px"});
+		$('.image-' + currentImage).animate({left: sliderWidth * -1}, 1000);
+		$('.image-' + nextImage).animate({left: "0px"}, 1000);
+		currentImage = nextImage;
+		increaseImages();
+	};
+
+	// Slide to the previous image
+	var slidePreviousImageRight = function() {
+		$('.image-' + previousImage).css({"left": (sliderWidth * -1)+"px"});
+		$('.image-' + currentImage).animate({left: sliderWidth}, 1000);
+		$('.image-' + previousImage).animate({left: "0px"}, 1000);
+		currentImage = previousImage;
+		increaseImages();
+	};
+
+	// Shift which images are next and previous
+	var increaseImages = function() {
+		if(currentImage === numImages) {
+			nextImage = 1;
+			previousImage = currentImage - 1;
+		} else {
+			nextImage = currentImage + 1;
+			if(currentImage === 1) {
+				previousImage = numImages;
+			} else {
+				previousImage = currentImage - 1;
+			}
+		}
+		// Change dots status
+		$('#dots').find('li').removeClass("active");
+		$('#dots').find('.' + currentImage).addClass("active");
+		// If hovering over preview buttons, change picture in preview
+		if(previewHover !== false) {
+			showPreview();
+		}
+	};
+
+	// Set initial slider interval
+	moveImages = setInterval(function() {
+		slideNextImageLeft();
+	}, delay);
+
+	// When next button is clicked
+	$('.next').click(function() {
+		clearInterval(moveImages);
+		moveImages = setInterval(function() {
+			slideNextImageLeft();
+		}, delay);
+		slideNextImageLeft();
+	});
+
+	// When previous button is clicked
+	$('.previous').click(function() {
+		clearInterval(moveImages);
+		moveImages = setInterval(function() {
+			slideNextImageLeft();
+		}, delay);
+		slidePreviousImageRight();
+	});
+
+
+
+};
+
+$(document).ready(function() {
+
+	slider();
+
+});
+		</script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GASF Mojo Offers</title>
+	<style>
+		.container{display: block; position: relative; padding-left: 35px; margin-bottom: 25px; cursor: pointer; font-size: 16px;
+				    font-family: 'Lato', sans-serif; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;
+				     user-select: none; font-weight: bold;}
+		.container input{position: absolute; opacity: 0; cursor: pointer;}
+		.checkmark{position: absolute; top: 0; left: 0; height: 20px; width: 20px; background-color: #fff; border-radius: 50%;
+				   border: 1px solid #000;}
+		.container:hover input ~ .checkmark{background-color:rgba(119, 119, 119, 0.4);}
+		.checkmark:after{content: ""; position: absolute; display: none; background-color: #000;}
+		.container input:checked ~ .checkmark:after{display: block;}
+		.container .checkmark:after{top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #000;}
+		.secondCont{margin-bottom: 10px;}
+	</style>
+</head>
+<body>
+
+<div style="max-width: 960px; margin: auto; margin-top: 300px;">
+
+<label class="container"> One-Time Purchase
+  <input type="radio" checked="checked" name="offerPurchase" value="OneTime" id="OneTime">
+  <span class="checkmark"></span>
+</label>
+<label class="container secondCont"> Enroll in Autoship
+  <input type="radio" name="offerPurchase" value="AutoShip" id="Autoship">
+  <span class="checkmark"></span>
+</label>
+
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed aut nostrum optio aliquid delectus in rerum atque aperiam odio tempore, ipsa praesentium, similique. Nihil ullam molestias vero vitae laboriosam laudantium. Iusto est nemo ab doloremque reiciendis ipsa suscipit in, nulla quo eos deleniti quisquam dicta a itaque perferendis quia ea culpa, voluptate cumque cupiditate porro. Qui repellendus quam doloremque dicta. </p>
+
+</div>
+<script>
+	    $(".widget-control__field").change(function() {
+	    	if ($(this).find(":selected").val() == "61225") {
+	    		$(".bagTitle").html("Starter Pack");
+	    		$(".title1").html("ONE 30-SCOOP BAG");
+	    		$(".savePrice").html("SAVE $8.95");
+	    		$(".bagPrice").html("$99.90");
+	    		$(".sectondLI, .redLine, .msrp").hide();
+	    		$(".firstLI").html('<span class="firstLI">One 30-Scoop† Bag<span>');
+	    		$(".bagImage img").attr("src","https://mojonow.blob.core.windows.net/cmr/t1919/opt/d716fef33bde45c3a7e9abee7399b60d_1.jpg");
+	    	}
+	    	else if ($(this).find(":selected").val() == "61227") {
+	    		$(".bagTitle").html("Risk-Free Trial");
+	    		$(".title1").html("TWO 30-SCOOP BAG");
+	    		$(".savePrice").html("SAVE $100");
+	    		$(".sectondLI, .redLine, .msrp").show();
+	    		$(".bagPrice").html("$99.90");
+	    		$(".msrp").html("$199.80");
+	    		$(".firstLI").html('<span class="firstLI">Two 30-Scoop† Bags<span>');
+	    		$(".bagImage img").attr("src","https://mojonow.blob.core.windows.net/cmr/t1524/src/d2ed8c9aa8dc49da950d903507b28872_1.jpg");
+	    	}
+	    	else if ($(this).find(":selected").val() == "61228") {
+	    		$(".bagTitle").html("Family Pack");
+	    		$(".title1").html("FOUR 30-SCOOP BAG");
+	    		$(".savePrice").html("SAVE $250");
+	    		$(".bagPrice").html("$159.80");
+	    		$(".sectondLI, .redLine, .msrp").show();
+	    		$(".msrp").html("$399.60");
+	    		$(".firstLI").html('<span class="firstLI">Four 30-Scoop† Bags<span>');
+	    		$(".bagImage img").attr("src","https://mojonow.blob.core.windows.net/cmr/t1524/src/0e42cd872e074782ae9bd2c7e1108105_1.jpg");
+	    	}
+	    });
+</script>
+</body>
+</html>

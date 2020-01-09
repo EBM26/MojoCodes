@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta name="format-detection" content="telephone=no">
+	<link rel="icon" type="image/x-icon" href="../mp-favicon.ico" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+<!-- slick css -->
+<link href="https://mojonow.blob.core.windows.net/cmr/t881/src/9944b1866e9849f18c70ea64e67744e0_1.css" rel="stylesheet">
+<!-- slick theme css -->
+<link href="https://mojonow.blob.core.windows.net/cmr/t881/src/d8e83b0af1894a78bcb5e252e5aaa705_1.css" rel="stylesheet">
+
+
+	<title>Customized Version Slider</title>
+	<!-- taken from this page https://codepen.io/doodlemarks/pen/aFcly  -->
+	<style>
+		*{text-decoration: none; margin: 0; padding: 0;}
+		html,body{margin: 0; padding: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;color: #191919;}
+		img{border: none;}
+		li{list-style-type: none;}
+		div{display: block; margin: 0; padding: 0;}
+		u{text-decoration: underline;}
+		s{text-decoration: line-through;}
+		i{font-style: italic;}
+		b{font-weight: bold;}
+		a:link, a:visited, a:active{text-decoration: none; color: inherit;}
+		.Fright, .constantFright{float: right;}
+		.Fleft, .constantFleft{float: left;}
+		.clear{clear: both;}
+		.container{width: 1200px; margin: auto;}
+		.row{padding: 0 40px;}
+		.flex-container{display: flex;}
+		.flex1{flex: 1;}
+		.align-left{text-align: left;}
+		.inline{display: inline;}
+		.inline-block{display: inline-block;}
+		.uppercase{text-transform: uppercase;}
+		.center{text-align: center;}
+		.relative{position: relative;}
+		.hidden{display: none;}
+		.font12{font-size: 12px;}
+		.font14{font-size: 14px;}
+		.font20{font-size: 20px;}
+		.font22{font-size: 22px;}
+		.font24{font-size: 24px;}
+		.font16{font-size: 16px;}
+		.font18{font-size: 18px;}
+		.font26{font-size: 26px;}
+		.font28{font-size: 28px;}
+		.font36{font-size: 36px;}
+		
+
+
+.slider-inside-container {padding: 10px;}
+.slider-inside-item{display: flex!important;}
+.slider-inside-container .slider-inside {padding: 30px;}
+.slider-inside-item .slider-inside-item-image img {max-width: 300px;}
+.slider-inside-item .slider-inside-item-image {padding: 0 15px; }
+.slider-inside-item .slider-inside-item-copy {padding: 15px;}
+.slider-inside-item-copy img{max-width: 70px;}
+.slider-inside-item-copy p{color: #2C3135; font-family: "Source Sans Pro"; font-weight: bold; font-size: 20px; margin: 10px 0; padding: 0;}
+.slick-prev:before{content: ' ' !important; background: url(https://mojonow.blob.core.windows.net/cmr/t1754/src/bcd5842b30a54cde80ad776c365000f3_1.png) no-repeat; width: 90px; height: 90px;}
+.slick-prev{left: -25px !important;}
+.slick-next{right: 40px !important;}
+.slick-next:before{content: ' ' !important; background: url(https://mojonow.blob.core.windows.net/cmr/t1754/src/1f2d9a00d91d4ab18c589bc4c60fa0a2_1.png) no-repeat; width: 90px; height: 90px;}
+.text-right{float: right;}
+.text-right:after{clear: both;}
+.topQuote{margin-bottom: 20px;}
+.slick-prev, .slick-next{top: 40%;}
+
+		/* ipad and mobile styling rules */
+		@media only screen and (max-width: 1099px) {
+			.container{width: auto;}
+			.slider-inside-item .slider-inside-item-image img {max-width: 200px; margin-top: 30px;}
+			.slider-inside-item-copy p{font-size: 18px;}
+			.slider-inside-item-copy img{max-width: 50px;}
+			.slider-inside-container .slider-inside {padding: 0 0px 20px 0;}
+
+
+		}
+		
+		/* mobile ONLY styling rules */
+@media (max-width: 767px) {
+	.slider-inside-item{display: block !important;}
+    .slider-inside-item .slider-inside-item-image img{max-width: 90%; margin: auto;}
+    .slider-inside-item-image{text-align: center;}
+    .slick-prev, .slick-next{display: none !important;}
+}
+
+
+		
+	</style>
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container" style="margin-top: 200px;">
+
+
+<div class="slider-inside-container">
+<div class="slider-inside">
+  <div class="slider-inside-item">
+    <div class="slider-inside-item-image">
+      <img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/deff2f4187b24081ab876a73e4591652_1.png" alt=""/>
+    </div>
+    <div class="slider-inside-item-copy">
+      <img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/fcfbfd490b634aa9b0a2101f2b36c5b3_1.png" alt="" class="topQuote">
+      <p class="testimonial">I couldn't believe going from that severe pain to no pain. No foot pain, no ankle pain, no arch pain... and it was like, oh, I can walk again. There is no pain... there is no pain."</p>
+	  <p class="name">-Ann H.</p>
+	  <div class="text-right">
+		<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/dfaaf7a6837246ee912680894b380155_1.png" alt="">
+	  </div>
+    </div>
+  </div>
+  <div class="slider-inside-item">
+    <div class="slider-inside-item-image">
+      <img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/50e2dc3ba34149519e4fb12d63ecaa79_1.png" alt=""/>
+    </div>
+    <div class="slider-inside-item-copy">
+      <img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/fcfbfd490b634aa9b0a2101f2b36c5b3_1.png" alt="" class="topQuote">
+      <p class="testimonial">Couple months ago, I found out I was a borderline diabetic and the things I have to do to change it are, is to exercise, to eat better, but the exercise is the most important part. Well, it's not always that easy to do that when you're a large person. I walk with my wife a lot but I have trouble keeping up with her. I try... try playing catch-up the whole time and it doesn't always work, or in the past it didn't work. Now it does. The pain is gone in my knee. I'm still losing weight. I can't see myself walking without these things now."</p>
+	  <p class="name">-Stephen S.</p>
+	  <div class="text-right">
+		<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/dfaaf7a6837246ee912680894b380155_1.png" alt="">
+	  </div>
+    </div>
+  </div>
+  <div class="slider-inside-item">
+    <div class="slider-inside-item-image">
+      <img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/f6a20b8a3226443eb8d8cd8d93d59c29_1.png" alt=""/>
+    </div>
+    <div class="slider-inside-item-copy">
+      <img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/fcfbfd490b634aa9b0a2101f2b36c5b3_1.png" alt="" class="topQuote">
+      <p class="testimonial">I'm on my feet all day. this mall is huge, it's four floors, and I walk 'em all every day. For 15 years, I've had back pain... different pains in my feet. I put the walkfits in my shoe in the morning. I do a... once around the mall. My feet feel better, my back feels better. I'm gonna wear 'em all the time."</p>
+	  <p class="name">-Mall Of America, Mary S.</p>
+	  <div class="text-right">
+		<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/dfaaf7a6837246ee912680894b380155_1.png" alt="">
+	  </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://mojonow.blob.core.windows.net/cmr/t1531/src/530694f282a241e18401158b89d97892_2.js" type="text/javascript"></script>
+<script>
+$( window ).on( "load", function() {
+  $('.slider-inside').not('.slick-initialized').slick({
+   slidesToShow: 1,
+   slidesToScroll: 1,
+   autoplay: true,
+   autoplaySpeed: 5000
+   });
+});
+</script>
+	</body>
+	</html>
+	

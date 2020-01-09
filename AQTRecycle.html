@@ -1,0 +1,100 @@
+		<head>
+			<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+		</head>
+		<style>
+			.err{font-size: inherit; font-family: 'Arial', sans-serif; color: #721C24; background-color: #F8D7DA; margin: 15px 0;
+				 padding: 10px 0 10px 30px; border: 1px solid #F5C6CB; display: none;}
+
+		</style>	
+		<style>
+			#submit{font-size: 22px; font-family: 'Montserrat', sans-serif; color: #fff; font-weight: bold; text-align: center;  
+			 	    background-color: #00AEEF; box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4), 0 0 20px 0 rgba(0,0,0,0.25); width: 170px;
+			 	    float: right; margin: 30px 30px 5px 15px; padding: 15px; box-sizing: border-box; cursor: pointer;}
+			.clear{clear: both;}
+		</style>
+		<style>
+		.numberCircle{width: 65px; height: 65px; border: 3px solid #00AEEF; font-size: 55px; text-align: center; font-family: Raleway, sans-serif;
+				color: #00AEEF; box-sizing: border-box; border-radius: 50%; margin: 0 !important; padding: 0 !important; 
+				line-height: .9 !important;}
+		
+		input:focus{outline: none;}
+		#datepicker{border: 1px solid #B2B9BD; background: #fff; font-size: 18px; color: #253037; padding: 5px 10px; margin-top: 10px;
+    				width: 65%;}
+    	#calender{background-color: #ECEEEF; border: 1px solid #B2B9BD; display: inline-block; box-sizing: border-box; padding: 5px; 
+    			  vertical-align: -17px; height: 53px;}
+		@media only screen and (max-width: 1023px) {
+
+		}
+
+		@media only screen and (max-width: 736px) {
+			
+		}
+
+		@media only screen and (max-width: 736px) and (orientation: landscape) {
+
+		}
+		</style>
+	<body style="max-width: 1200px; margin: 300px auto;">
+		
+		<input type="text" id="datepicker" placeholder="Date"><div id="calender"><img src="conjure_resource(12854792547545cf9efa45e46cb7036d)" alt=""></div> 
+		<input type="text" id="TanksPerDay" placeholder="Number">
+
+		<div id="submit">ENTER</div>
+		<div class="clear"></div>
+ 	
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
+	    <p class="number">1</p>
+		
+
+		<img src="conjure_resource(1395a306d1184e73b5cdea9135515c17)" alt="" style="vertical-align: middle; margin-right: 5px;">
+
+		<a href="http://www.facebook.com/sharer.php?u=https://aquatruwater.com/bottles-calculator" target="_blank"><img src="conjure_resource(f60d27a4a6274f7f85287ba884c5fef3)" alt="" style="vertical-align: middle; margin-right: 5px; margin-left: 5px;" ></a><a href="https://twitter.com/share?url=https://aquatruwater.com/bottles-calculator&amp;text=Wow!%20I've%20saved&amp;plastic&amp;water&amp;bottles&amp;from&amp;ending&amp;up&amp;in&amp;landfills&amp;and&amp;our&amp;oceans&amp;since&amp;using&amp;my&amp;AquaTru&amp;water&amp;purifier!&amp;Happy&amp;National&amp;Recycling&amp;Day!&amp;hashtags=reducereuserecycle" target="_blank"><img src="conjure_resource(044c8c2012cf46b8968fa609e9288a73)" alt="" style="vertical-align: middle; margin-right: 5px; margin-left: 5px;"></a>
+
+	</body>
+	<script>
+		// this is the calculation ( (96 * TanksPerDay) * (DateNow - DatePurchased) ) / 16.9 = result;
+		$( "#datepicker" ).datepicker();
+		
+		$(document).ready(function() {
+
+			$("#submit").click(function(event){
+				var datepicker = $( "#datepicker" ).val();
+				var date = $("#datepicker").datepicker('getDate');
+		        var today = new Date();
+		        var dayDiff = Math.ceil((today - date) / (1000 * 60 * 60 * 24));
+		        var finalDate = dayDiff - 1;
+		        var TanksPerDay = $("#TanksPerDay").val();
+				var result = Math.round( ( (96 * TanksPerDay) * (finalDate) ) / 16.9 );
+
+
+			 	if ( datepicker === "" || date > today ) {
+			 		$(".dateError").show();
+			 		event.preventDefault();
+			 		return;
+
+			 		} 
+
+			 	else if ( TanksPerDay === "" || isNaN(TanksPerDay) || TanksPerDay == 0 ) {
+			 		$(".tankError").show();
+			 		event.preventDefault();
+			 		return;
+
+			 	}
+
+			 	$(".resDiv").show();
+
+			 	$('html, body').animate({
+            		scrollTop: $(".yourEsults").offset().top
+        		}, 1000);
+
+			 	$(".botNum").html(result);
+			});
+
+			$("#datepicker, #TanksPerDay").focus(function() {
+				$(".tankError, .dateError").hide();
+			});
+		});
+	</script>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta name="format-detection" content="telephone=no">
+	<link rel="icon" type="image/x-icon" href="../mp-favicon.ico" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Customized Version Slider</title>
+	<!-- taken from this page https://codepen.io/doodlemarks/pen/aFcly  -->
+	<style>
+		*{text-decoration: none; margin: 0; padding: 0;}
+		html,body{margin: 0; padding: 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;color: #191919;}
+		img{border: none;}
+		li{list-style-type: none;}
+		div{display: block; margin: 0; padding: 0;}
+		u{text-decoration: underline;}
+		s{text-decoration: line-through;}
+		i{font-style: italic;}
+		b{font-weight: bold;}
+		a:link, a:visited, a:active{text-decoration: none; color: inherit;}
+		.Fright, .constantFright{float: right;}
+		.Fleft, .constantFleft{float: left;}
+		.clear{clear: both;}
+		.container{width: 1200px; margin: auto;}
+		.row{padding: 0 40px;}
+		.flex-container{display: flex;}
+		.flex1{flex: 1;}
+		.align-left{text-align: left;}
+		.inline{display: inline;}
+		.inline-block{display: inline-block;}
+		.uppercase{text-transform: uppercase;}
+		.center{text-align: center;}
+		.relative{position: relative;}
+		.hidden{display: none;}
+		.font12{font-size: 12px;}
+		.font14{font-size: 14px;}
+		.font20{font-size: 20px;}
+		.font22{font-size: 22px;}
+		.font24{font-size: 24px;}
+		.font16{font-size: 16px;}
+		.font18{font-size: 18px;}
+		.font26{font-size: 26px;}
+		.font28{font-size: 28px;}
+		.font36{font-size: 36px;}
+		
+
+		/* component css */
+		*{text-decoration: none; margin: 0; padding: 0;}
+		#slider{ position: relative; overflow: hidden; margin: 20px auto 0 auto; border-radius: 4px;}
+		#slider ul{position: relative;margin: 0;padding: 0;height: 200px;list-style: none;}
+		#slider ul li{position: relative;display: block;float: left;margin: 0;padding: 0;width: 1100px;height: 340px;}
+		a.control_prev, a.control_next{position: absolute;top: 25%;z-index: 999;display: block;padding: 4% 0;width: auto;
+					  height: auto;text-decoration: none;font-weight: 600;
+					  opacity: 0.8;cursor: pointer;}
+
+		a.control_prev:hover, a.control_next:hover{opacity: 1;-webkit-transition: all 0.2s ease;}
+		a.control_prev{border-radius: 0 2px 2px 0;}
+		a.control_next{right: 0; border-radius: 2px 0 0 2px;}
+		
+		.slideDiv{padding: 0 7%; display: flex;}
+		.imgDiv{text-align: center;}
+		.imgDiv img{max-width: 300px;}
+		.contentDiv{position: relative; max-width: 610px; padding-left: 20px; padding-top: 20px;}
+		.contentDiv p{color: #2C3135; font-family: "Source Sans Pro"; font-weight: bold; font-size: 19px; margin: 10px 0; padding: 0;}
+		.contentDiv img{max-width: 60px;}
+		.text-right{text-align: right;}
+		.name{text-align: right; margin: 0 0 10px !important;}
+
+		/* ipad and mobile styling rules */
+		@media only screen and (max-width: 1099px) {
+			.container{width: auto;}
+			.row{padding: 0 10px;}
+		    #slider ul li, #slider{width: 1000px !important;}
+		    .imgDiv img{max-width: 200px;}
+		    .contentDiv img{max-width: 50px;}
+			.contentDiv p{font-size: 16px;}
+			.controls img{width: 60px;}
+			.controls{top: 35% !important;}
+			.control_next{margin-right: -5px;}
+			a.control_prev{}
+			a.control_next{right: 0;}
+		}
+		
+		/* mobile ONLY styling rules */
+		@media only screen and (max-width: 736px) {
+			#slider ul li{width: 350px; padding: 20px 0px;}
+			.slideDiv{display: block; padding: 10px;}
+			#slider ul, #slider ul li{height: 580px;}
+			.imgDiv img{max-width: 160px;}
+			.contentDiv{max-width: 100%; padding: 10px;}
+			.controls{top: 15% !important;}
+			.contentDiv img{max-width: 40px;}
+		}
+		
+	</style>
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container" style="margin-top: 200px;">
+			<div id="slider">
+			  <a class="control_next controls"><img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/1f2d9a00d91d4ab18c589bc4c60fa0a2_1.png" alt=""></a>
+			  <a class="control_prev controls"><img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/bcd5842b30a54cde80ad776c365000f3_1.png" alt=""></a>
+			  <ul>
+			    <li>
+			    	<div class="slideDiv">
+			    		<div class="imgDiv">
+			    			<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/deff2f4187b24081ab876a73e4591652_1.png" alt="">
+			    		</div>
+			    		<div class="contentDiv">
+			    			<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/fcfbfd490b634aa9b0a2101f2b36c5b3_1.png" alt="" class="topQuote">
+			    			<p>I couldn't believe going from that severe pain to no pain. No foot pain, no ankle pain, no arch pain... and it was like, oh, I can walk again. There is no pain... there is no pain."</p>
+			    			<p class="name">-Ann H.</p>
+			    			<div class="text-right">
+			    				<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/dfaaf7a6837246ee912680894b380155_1.png" alt="">
+			    			</div>
+			    		</div>
+			    	</div>
+				</li>
+			    <li>
+					<div class="slideDiv">
+			    		<div class="imgDiv">
+			    			<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/50e2dc3ba34149519e4fb12d63ecaa79_1.png" alt="">
+			    		</div>
+			    		<div class="contentDiv">
+			    			<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/fcfbfd490b634aa9b0a2101f2b36c5b3_1.png" alt="" class="topQuote">
+			    			<p>Couple months ago, I found out I was a borderline diabetic and the things I have to do to change it are, is to exercise, to eat better, but the exercise is the most important part. Well, it's not always that easy to do that when you're a large person. I walk with my wife a lot but I have trouble keeping up with her. I try... try playing catch-up the whole time and it doesn't always work, or in the past it didn't work. Now it does. The pain is gone in my knee. I'm still losing weight. I can't see myself walking without these things now."</p>
+			    			<p class="name">-Stephen S.</p>
+			    			<div class="text-right">
+			    				<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/dfaaf7a6837246ee912680894b380155_1.png" alt="">
+			    			</div>
+			    		</div>
+			    	</div>
+			    </li>
+			    <li>
+			    	<div class="slideDiv">
+			    		<div class="imgDiv">
+			    			<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/f6a20b8a3226443eb8d8cd8d93d59c29_1.png" alt="">
+			    		</div>
+			    		<div class="contentDiv">
+			    			<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/fcfbfd490b634aa9b0a2101f2b36c5b3_1.png" alt="" class="topQuote">
+			    			<p>I'm on my feet all day. this mall is huge, it's four floors, and I walk 'em all every day. For 15 years, I've had back pain... different pains in my feet. I put the walkfits in my shoe in the morning. I do a... once around the mall. My feet feel better, my back feels better. I'm gonna wear 'em all the time."</p>
+			    			<p class="name">-Mall Of America, Mary S.</p>
+			    			<div class="text-right">
+			    				<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/dfaaf7a6837246ee912680894b380155_1.png" alt="">
+			    			</div>
+			    		</div>
+			    	</div>
+				</li>
+			  </ul>  
+			</div>
+
+
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+			
+			jQuery(document).ready(function ($) {
+			  
+				var slideCount = $('#slider ul li').length;
+				var slideWidth = $('#slider ul li').width();
+				var slideHeight = $('#slider ul li').height();
+				var sliderUlWidth = slideCount * slideWidth;
+				
+				$('#slider').css({ width: slideWidth, height: slideHeight });
+				
+				$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+				
+			    $('#slider ul li:last-child').prependTo('#slider ul');
+
+			    function moveLeft() {
+			        $('#slider ul').animate({
+			            left: + slideWidth
+			        }, 500, function () {
+			            $('#slider ul li:last-child').prependTo('#slider ul');
+			            $('#slider ul').css('left', '');
+			        });
+			    };
+
+			    function moveRight() {
+			        $('#slider ul').animate({
+			            left: - slideWidth
+			        }, 500, function () {
+			            $('#slider ul li:first-child').appendTo('#slider ul');
+			            $('#slider ul').css('left', '');
+			        });
+			    };
+
+			    $('a.control_prev').click(function () {
+			        moveLeft();
+			    });
+
+			    $('a.control_next').click(function () {
+			        moveRight();
+			    });
+
+			    setInterval(function () {
+			        moveRight();
+			    }, 15000);
+			   
+
+			});    
+
+
+		</script>
+	</body>
+	</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta name="format-detection" content="telephone=no">
+
+
+
+	<style>
+		.inputField{display: block; box-sizing: border-box; width: 100%; padding: 10px 0px 10px 10px; font-size: 18px; color: #41565D; 
+					font-family: "Open Sans"; border: 1px solid #054872; margin-bottom: 20px;}
+		.twoDiv{display: flex;}
+		.twoDiv .rightInput{margin-right: 10px;}
+		.twoDiv .leftInput{margin-left: 10px;}
+		@media only screen and (max-width: 1023px) {
+	</style>
+
+
+	</head>
+	<body>
+		<div style="max-width: 500px; margin: 200px auto 0; background-color: #20A4F3; padding: 20px 10px;">
+
+		<form class="js-client-info-form" method="POST">
+			<dvalue name="FORM_SET_CONTAINS_BILLING"></dvalue>
+			<dvalue name="FORM_SET_CONTAINS_SHIPPING"></dvalue>
+			<dvalue name="FORM_SET_IGNORE_VALIDATION"></dvalue>
+			<input id="CheckoutForm_IsPhoneNumberRequired" name="CheckoutForm_IsPhoneNumberRequired" type="hidden" value="{A.CheckoutForm_IsPhoneNumberRequired}">
+			
+			<input value="true" name="BillingSameAsShipping" type="hidden">
+			<input name="{D.INPUT_SHIPPING_EMAIL}" id="{D.INPUT_SHIPPING_EMAIL}" value="{D.INPUT_SHIPPING_EMAIL_VALUE}" placeholder="Email" data-field-is-required="true" type="email" data-field-email="true" class="inputField">
+			<div class="twoDiv">
+				<input name="{D.INPUT_SHIPPING_FIRST_NAME}" id="{D.INPUT_SHIPPING_FIRST_NAME}" value="{D.INPUT_SHIPPING_FIRST_NAME_VALUE}" placeholder="First Name" data-field-is-required="true" type="text" class="inputField rightInput">
+				<input name="{D.INPUT_SHIPPING_LAST_NAME}" id="{D.INPUT_SHIPPING_LAST_NAME}" value="{D.INPUT_SHIPPING_LAST_NAME_VALUE}" placeholder="Last Name" data-field-is-required="true" type="text" class="inputField leftInput">
+			</div>
+			<input name="{D.INPUT_SHIPPING_ADDRESS1}" id="{D.INPUT_SHIPPING_ADDRESS1}" value="{D.INPUT_SHIPPING_ADDRESS1_VALUE}" placeholder="Address" data-field-is-required="true" type="text" class="inputField">
+			<input name="{D.INPUT_SHIPPING_ADDRESS2}" id="{D.INPUT_SHIPPING_ADDRESS2}" value="{D.INPUT_SHIPPING_ADDRESS2_VALUE}" placeholder="Apt/Suite" type="text" class="inputField">
+			<div class="twoDiv">
+				<input name="{D.INPUT_SHIPPING_CITY}" id="{D.INPUT_SHIPPING_CITY}" value="{D.INPUT_SHIPPING_CITY_VALUE}" placeholder="City" data-field-is-required="true" type="text" class="inputField rightInput">
+				<select name="{D.INPUT_SHIPPING_STATE}" id="{D.INPUT_SHIPPING_STATE}" data-field-is-required="true" data-selected-state="{D.INPUT_SHIPPING_STATE_VALUE}" placeholder="State" class="inputField leftInput"></select>
+			</div>
+			<div class="twoDiv">
+				<input name="{D.INPUT_SHIPPING_ZIP}" id="{D.INPUT_SHIPPING_ZIP}" value="{D.INPUT_SHIPPING_ZIP_VALUE}" placeholder="Postal Code" data-field-is-required="true" type="text" class="inputField rightInput">
+				<input name="{D.INPUT_SHIPPING_PHONE}" id="{D.INPUT_SHIPPING_PHONE}" value="{D.INPUT_SHIPPING_PHONE_VALUE}" placeholder="Phone" data-field-is-required="true" type="tel" class="inputField leftInput">
+			</div>
+		</form>
+
+	</div>
+<script>
+	$(document).ready(function () {
+       if ($('#CheckoutForm_IsPhoneNumberRequired').val().toLowerCase() == 'false')
+    {
+        $('#ShippingPhone').removeAttr('data-field-is-required');
+        $('#BillingPhone').removeAttr('data-field-is-required');
+    }
+ 
+    var countrySelectors = $('#{D.INPUT_SHIPPING_COUNTRY}');
+    countrySelectors.change(function () {
+        var $this = $(this);
+        var countryId = $this.val();
+ 
+        $.getJSON("/data/States", { countryId: countryId }, function (data) {
+            var statesSelector = '#' + $this.attr('data-states-selector');
+            var statesControl = $(statesSelector);
+            statesControl.html('');
+            for (var i = 0; i < data.length; i++) {
+                $('<option value="' + data[i].StateProvinceId + '">' + data[i].Name + '</option>').appendTo(statesControl);
+            }
+                        var selectedState = statesControl.data('selected-state');
+                        if (selectedState != '' && statesControl.find('option[value="' + selectedState + '"]').length) {
+                                 statesControl.val(statesControl.data('selected-state'));
+                        }
+                        else {
+                                 statesControl.val(0);
+                        }
+        });
+    });
+ 
+    countrySelectors.trigger('change');
+ 
+    $('#ShippingZip').keyup(function () {
+        setCityAndstateByZip("Shipping");
+    });
+       $('#BillingZip').keyup(function () {
+        setCityAndstateByZip("BillingZip");
+    });
+ 
+});
+ 
+var resizeTimeout = null;
+function setCityAndstateByZip(mode) {
+    if ($('#' + mode + 'Zip').val().length >= 5) {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function () {
+            $.ajax({
+                type: "GET",
+                url: '/Data/GetStateAndCityByZip',
+                data: {
+                    zipCode: $('#' + mode + 'Zip').val(),
+                    countryId: $('#' + mode + 'CountryId').val()
+                },
+                success: function (data) {
+                    if (data != null) {
+                        $('#' + mode + 'City').val(data[0]).trigger('change');
+                        $('#' + mode + 'StateId [value = ' + data[1] + ']').attr("selected", "selected");
+                        $('#' + mode + 'StateId').trigger('change');
+                    }
+                }
+            });
+        }, 200);
+    }
+};
+
+
+
+
+
+var formValidationState = { state: true, validationMessage: '' };
+$('.js-client-info-form').find('input[type=text], select').each(function () {
+       formValidationState = formValidationState.state ? requiredFieldValidate($(this)) : formValidationState;
+});
+if (formValidationState.state) {
+       $('.js-clien-info-form').submit();
+} else {
+       alert(formValidationState.validationMessage);
+}
+ 
+function requiredFieldValidate(field) {
+    return (field.val() == '' || field.val() == null) && typeof field.attr('data-field-is-required') !== 'undefined' ? { state: false, validationMessage: 'Please fill required fields' } : { state: true, validationMessage: '' };
+};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta name="format-detection" content="telephone=no">
+
+
+
+<style>
+		.pictureBox{background: url(https://mojonow.blob.core.windows.net/cmr/t1754/src/27f8bf30940a4934b7729192f2d168ba_1.png) no-repeat center; background-size: cover; width: 960px;
+					 margin: auto; height: 560px;}
+		.flexLeft{display: inline-block; float: left; width: 46%; position: relative;}
+		.flexRight{display: inline-block; float: right; width: 50%;
+					background-color: rgba(39,111,191,0.9); padding: 105px 15px 105px; color: #fff; }
+		.title{color: #65DEF1; text-align: center; font-size: 28px; margin-bottom: 30px;
+				 font-weight: bold;}
+		.listBlue{margin-left: 25px;}
+		.listBlue li{background: url(https://mojonow.blob.core.windows.net/cmr/t1754/src/3c8490f6272e4a50bc7876b954e050e5_1.png) no-repeat 0px 2px transparent; font-size: 18px; margin-bottom: 15px; padding: 0px 0px 1px 35px; list-style: none !important;}
+		.targetImage{width: 50px; cursor: pointer;}
+		#target1{right: 88px; top: 100px; position: absolute;}
+		#target2{right: 80px; top: 210px; position: absolute;}
+		#target3{right: 135px; top: 260px; position: absolute;}
+		#target4{right: 60px; top: 365px; position: absolute;}
+		#target5{right: 70px; top: 505px; position: absolute;}
+		.textDiv{color: #01406B; font-size: 16px; text-align: center; border-radius: 20.5px; background-color: #65DEF1; padding: 5px 0px; position: absolute; z-index: 10; width: 0px; overflow: hidden; height: 30px; transition: .3s ease; right: 10px; top: 10px;}
+		.activeImg{transition: all .2s ease-in-out; transform: scale(2);}
+		.activeTxt{width: 250px; right: 10px;}
+
+		@media only screen and (max-width: 1023px) {
+			.pictureBox{width: auto;}
+			.flexRight{padding: 96px 15px 95px;}
+			.textDiv{font-size: 14px; padding: 7px 0;}
+			#target1{right: 75px;}
+			#target2{right: 78px;}
+			#target3{right: 33px;}
+			#target4{right: 58px; top: 360px;}
+			#target5{right: 68px; top: 465px;}
+			.title{margin-top: 0; font-size: 25px;}
+			.listBlue{margin-left: 0; padding-left: 20px;}
+			.listBlue li{font-size: 16px;}
+		
+		}
+
+		@media only screen and (max-width: 736px) {
+			.pictureBox{background: transparent; width: auto; height: auto;}
+			.flexLeft, .flexRight{display: block; float: none; width: 100%;}
+			.flexRight{padding: 30px 0px;}
+			.listBlue{margin-left: 20px; margin-right: 20px;}
+			.flexLeft{background: url(https://mojonow.blob.core.windows.net/cmr/t1754/src/27f8bf30940a4934b7729192f2d168ba_1.png) no-repeat left; background-size: cover; height: 600px;}
+			.targetImage{transition: all .2s ease-in-out; transform: scale(1.5);}
+			.textDiv{width: 260px;}
+			#target1{right: 50px;}
+			#target2{right: 45px;}
+			#target3{right: 80px;}
+			#target4{right: 20px; top: 165px;}
+			#target5{right: 25px; top: 500px;}
+		
+		}
+		
+		@media only screen and (max-width: 736px) and (orientation: landscape) {
+			#target1{right: 215px; top: 100px;}
+			#target2{right: 205px; top: 210px;}
+			#target3{right: 365px; top: 269px;}
+			#target4{right: 190px; top: 370px;}
+			#target5{right: 190px; top: 505px;}
+		}
+	</style>
+
+
+	</head>
+	<body>
+
+
+
+ <div class="pictureBox">
+				<div class="flexRight">
+					<p class="title">The Benefits of Walkfit Orthotics</p>
+					<ul class="listBlue">
+						<li>Cups foot with durable support to relieve discomfort! This reduces painful burning, bunions, corns and calluses.</li>
+						<li>Cushions your heel for ultimate comfort! A cushioning gel pad in the heel provides extra shock absorption and comfort.</li>
+						<li>No other orthotic offers you this custom comfort feature! 3 sets of customizable arch inserts allow you to decide which feels perfect for you.</li>
+					</ul>
+				</div>
+				<div class="flexLeft">
+					<div id="target1" class="target active">
+						<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/a4be70212f2c4280abbdf77abb2f4489_1.png" alt="" class="targetImage activeImg" id="target1img">
+						<div class="textDiv activeTxt" id="textDiv1">Aligns back and shoulders</div>
+					</div>
+					<div id="target2" class="target">
+						<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/a4be70212f2c4280abbdf77abb2f4489_1.png" alt="" class="targetImage" id="target2img">
+						<div class="textDiv" id="textDiv2">Relieves lower back pain</div>
+					</div>
+					<div id="target3" class="target">
+						<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/a4be70212f2c4280abbdf77abb2f4489_1.png" alt="" class="targetImage" id="target3img">
+						<div class="textDiv" id="textDiv3">Balances hips for easier movement</div>
+					</div>
+					<div id="target4" class="target">
+						<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/a4be70212f2c4280abbdf77abb2f4489_1.png" alt="" class="targetImage" id="target4img">
+						<div class="textDiv" id="textDiv4">Reduces stress on knee joints</div>
+					</div>
+					<div id="target5" class="target">
+						<img src="https://mojonow.blob.core.windows.net/cmr/t1754/src/a4be70212f2c4280abbdf77abb2f4489_1.png" alt="" class="targetImage" id="target5img">
+						<div class="textDiv" id="textDiv5">Cradles feet for improved stability</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	
+	$( document ).ready(function() {
+
+	 if ($(window).width() < 1023) {
+			$(".target").click(function() {
+				if(!$(this).hasClass("active")) {
+				    $(".target").removeClass("active");
+					$(".targetImage").removeClass("activeImg");
+					$(".textDiv").removeClass("activeTxt");
+					$(this).find(".targetImage").addClass("activeImg");
+					$(this).find(".textDiv").addClass("activeTxt");
+					$(this).addClass("active");
+					}
+
+				    else if($(this).hasClass("active")) {
+				    	$(this).removeClass("active");
+						$(".targetImage").removeClass("activeImg");
+						$(".textDiv").removeClass("activeTxt");
+					  }
+			});
+			}
+
+			else {
+
+			  $(".target").hover(function() {
+				if(!$(this).hasClass("active")) {
+					$(".target").removeClass("active");
+					$(".targetImage").removeClass("activeImg");
+					$(".textDiv").removeClass("activeTxt");
+					$(this).find(".targetImage").addClass("activeImg");
+					$(this).find(".textDiv").addClass("activeTxt");
+					$(this).addClass("active");
+					}
+
+				    else if($(this).hasClass("active")) {
+				    	$(this).removeClass("active");
+						$(".targetImage").removeClass("activeImg");
+						$(".textDiv").removeClass("activeTxt");
+					  }
+			});
+			};
+		});
+</script>
+
+
+	</body>
+	</html>

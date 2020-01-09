@@ -1,0 +1,50 @@
+
+	<style>
+		.answerCol{opacity: 0;}
+		.textCol{cursor: pointer;}
+		.active{opacity: 1;}
+	</style>
+<a href="https://www.facebook.com/aquatruwater"><img src="conjure_resource(96f2e69023d442d1a9c93918ce66e3b8)" alt=""></a>
+
+	<script>
+
+		$(document).ready(function() {
+
+			$(".firstCol").click(function() {
+				$(".textCol .grid__cell").css("border-right", "1px solid #BFC4CC");
+				$(".answerCol").removeClass("active");
+				$(".firstAnswer").addClass("active");
+				$(".firstCol .grid__cell").css("border-right", "4px solid #2A4494");
+			});
+
+			$(".secondCol").click(function() {
+				$(".textCol .grid__cell").css("border-right", "1px solid #BFC4CC");
+				$(".answerCol").removeClass("active");
+				$(".secondAnswer").addClass("active");
+				$(".secondCol .grid__cell").css("border-right", "4px solid #2A4494");
+			});
+
+			$(".thirdCol").click(function() {
+				$(".textCol .grid__cell").css("border-right", "1px solid #BFC4CC");
+				$(".answerCol").removeClass("active");
+				$(".thirdAnswer").addClass("active");
+				$(".thirdCol .grid__cell").css("border-right", "4px solid #2A4494");
+			});
+
+			$(".fourthCol").click(function() {
+				$(".textCol .grid__cell").css("border-right", "1px solid #BFC4CC");
+				$(".answerCol").removeClass("active");
+				$(".fourthAnswer").addClass("active");
+				$(".fourthCol .grid__cell").css("border-right", "4px solid #2A4494");
+			});
+
+			$(".fifthCol").click(function() {
+				$(".textCol .grid__cell").css("border-right", "1px solid #BFC4CC");
+				$(".answerCol").removeClass("active");
+				$(".fifthAnswer").addClass("active");
+				$(".fifthCol .grid__cell").css("border-right", "4px solid #2A4494");
+			});
+
+
+		});
+	</script>
